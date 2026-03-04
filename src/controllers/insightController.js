@@ -1,7 +1,7 @@
-const Asset = require('../models/Asset');
-const Liability = require('../models/Liability');
-const Transaction = require('../models/Transaction');
-const Snapshot = require('../models/Snapshot');
+import Asset from '../models/Asset.js';
+import Liability from '../models/Liability';
+import Transaction from '../models/Transaction';
+import Snapshot from '../models/Snapshot';
 
 const getInsights = async (req, res) => {
   try {
@@ -61,4 +61,4 @@ const getInsights = async (req, res) => {
   }
 };
 
-module.exports = { getInsights };
+export  { getInsights };

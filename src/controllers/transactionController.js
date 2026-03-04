@@ -1,4 +1,4 @@
-const Transaction = require('../models/Transaction');
+import Transaction from '../models/Transaction';
 
 const getTransactions = async (req, res) => {
   try {
@@ -47,4 +47,4 @@ const deleteTransaction = async (req, res) => {
   }
 };
 
-module.exports = { getTransactions, createTransaction, updateTransaction, deleteTransaction };
+export { getTransactions, createTransaction, updateTransaction, deleteTransaction };

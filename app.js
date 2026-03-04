@@ -1,17 +1,24 @@
-const express = require('express');
-const cors = require('cors');
+import express from "express";
+import cors from "cors";
+import connectDB from './src/config/db.js';
+import dotenv from "dotenv";
+import authRoutes from'./routes/authRoutes';
+import assetRoutes from'./routes/assetRoutes';
+import liabilityRoutes from'./routes/liabilityRoutes';
+import transactionRoutes from'./routes/transactionRoutes';
+import goalRoutes from'./routes/goalRoutes';
+import insightRoutes from'./routes/insightRoutes';
 
-const authRoutes = require('./routes/authRoutes');
-const assetRoutes = require('./routes/assetRoutes');
-const liabilityRoutes = require('./routes/liabilityRoutes');
-const transactionRoutes = require('./routes/transactionRoutes');
-const goalRoutes = require('./routes/goalRoutes');
-const insightRoutes = require('./routes/insightRoutes');
+
+
 
 const app = express();
+dotenv.config();
+connectDB();
 
 app.use(cors());
 app.use(express.json());
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/assets', assetRoutes);
@@ -24,4 +31,10 @@ app.get('/', (req, res) => {
   res.json({ message: 'Finance API is running' });
 });
 
-module.exports = app;
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+export default app;

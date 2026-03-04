@@ -1,4 +1,4 @@
-const Liability = require('../models/Liability');
+import Liability from '../models/Liability';
 
 const getLiabilities = async (req, res) => {
   try {
@@ -40,4 +40,4 @@ const deleteLiability = async (req, res) => {
   }
 };
 
-module.exports = { getLiabilities, createLiability, updateLiability, deleteLiability };
+export { getLiabilities, createLiability, updateLiability, deleteLiability };

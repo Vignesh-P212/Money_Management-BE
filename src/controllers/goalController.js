@@ -1,4 +1,4 @@
-const Goal = require('../models/Goal');
+import Goal from '../models/Goal';
 
 const getGoals = async (req, res) => {
   try {
@@ -40,4 +40,4 @@ const deleteGoal = async (req, res) => {
   }
 };
 
-module.exports = { getGoals, createGoal, updateGoal, deleteGoal };
+export { getGoals, createGoal, updateGoal, deleteGoal };

@@ -1,4 +1,4 @@
-const Asset = require('../models/Asset');
+import Asset from '../models/Asset.js';
 
 const getAssets = async (req, res) => {
   try {
@@ -40,4 +40,4 @@ const deleteAsset = async (req, res) => {
   }
 };
 
-module.exports = { getAssets, createAsset, updateAsset, deleteAsset };
+export { getAssets, createAsset, updateAsset, deleteAsset };

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const snapshotSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -10,4 +10,5 @@ const snapshotSchema = new mongoose.Schema({
   year: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('Snapshot', snapshotSchema);
+const Snapshot= mongoose.model('Snapshot', snapshotSchema);
+export default Snapshot;
