@@ -9,9 +9,6 @@ import transactionRoutes from'./routes/transactionRoutes';
 import goalRoutes from'./routes/goalRoutes';
 import insightRoutes from'./routes/insightRoutes';
 
-
-
-
 const app = express();
 dotenv.config();
 connectDB();
