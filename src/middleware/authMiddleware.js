@@ -1,21 +1,47 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 const protect = async (req, res, next) => {
-  let token;
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    try {
-      token = req.headers.authorization.split(' ')[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = await User.findById(decoded.id).select('-password');
-      next();
-    } catch (error) {
-      return res.status(401).json({ message: 'Not authorized, token failed' });
+  try {
+
+    const token = req.cookies?.auth_token;
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Not authorized. No token."
+      });
     }
-  }
-  if (!token) {
-    return res.status(401).json({ message: 'Not authorized, no token' });
+
+    const decoded = jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET
+    );
+
+    const user = await User
+      .findById(decoded.id)
+      .select("-password -refreshToken");
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found."
+      });
+    }
+
+    req.user = user;
+
+    next();
+
+  } catch (error) {
+
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token.",
+      error: error.message
+    });
+
   }
 };
 
-export default  protect ;
+export default protect;
