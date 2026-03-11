@@ -1,8 +1,14 @@
-import express from 'express';
-import { register, login } from '../controllers/authController';
+import express from "express";
 
-const router=express.Router();
-router.post('/register', register);
-router.post('/login', login);
+import registerUser from "../controllers/auth/registerUser.js";
+import loginUser from "../controllers/auth/loginUser.js";
+import refreshAccessToken from "../controllers/auth/refreshAccessToken.js";
+import logoutUser from "../controllers/auth/logoutUser.js";
+const router = express.Router();
 
-export default  router;
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.post("/refresh", refreshAccessToken);
+router.post("/logout", logoutUser);
+
+export default router;
