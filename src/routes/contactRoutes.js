@@ -1,10 +1,11 @@
 // routes/contact.js
 import express from "express";
 import nodemailer from "nodemailer";
-
+import dotenv from "dotenv";
 const router = express.Router();
 
 // POST /api/contact
+dotenv.config();
 router.post("/", async (req, res) => {
   const { name, email, subject, message } = req.body;
 
@@ -30,7 +31,7 @@ router.post("/", async (req, res) => {
   try {
     // Email 1: Notify you
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: email,
       to: process.env.EMAIL_USER,
       subject: `Portfolio Contact: ${subject}`,
       html: `<p><strong>${name}</strong> (${email}) sent a message:</p><p>${message}</p>`,
