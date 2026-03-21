@@ -4,7 +4,7 @@ const createLiability = async (req, res) => {
   try {
 
     const userId = req.user?._id;
-    const { name, amount, type } = req.body;
+    const { name, amount, type,interestRate } = req.body;
 
     if (!userId) {
       return res.status(401).json({
@@ -24,6 +24,7 @@ const createLiability = async (req, res) => {
       name,
       amount,
       type,
+      interestRate,
       user: userId
     });
 

@@ -13,7 +13,7 @@ import liabilityRoutes from "./src/routes/liabilityRoutes.js";
 import transactionRoutes from "./src/routes/transactionRoutes.js";
 import goalRoutes from "./src/routes/goalRoutes.js";
 import insightRoutes from "./src/routes/insightRoutes.js";
-
+import contactRoute from "./src/routes/contactRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -60,6 +60,7 @@ app.use("/api/liabilities", liabilityRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/goals", goalRoutes);
 app.use("/api/insights", insightRoutes);
+app.use("/api/contact", contactRoute);
 
 
 //Health Check

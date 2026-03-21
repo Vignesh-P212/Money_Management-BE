@@ -4,7 +4,7 @@ const createAsset = async (req, res) => {
   try {
 
     const userId = req.user?._id;
-    const { name, value, category } = req.body;
+    const { name, value, type } = req.body;
 
     if (!userId) {
       return res.status(401).json({
@@ -23,7 +23,7 @@ const createAsset = async (req, res) => {
     const newAsset = new Asset({
       name,
       value,
-      category,
+      type,
       user: userId
     });
 
