@@ -24,12 +24,14 @@ const PORT = process.env.PORT || 5000;
 // Security Middleware
 app.use(helmet());
 const corsOptions = {
-  origin: "https://money-management-fe.vercel.app",
+  origin: [
+    "https://money-management-fe.vercel.app",
+    "https://vignesh-portfolio-ten-sand.vercel.app"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 };
-
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // allow preflight
 app.use(cookieParser());
